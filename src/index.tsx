@@ -9,6 +9,7 @@ const route = (
     <Switch>
       <Route exact path="/" component={App} />
       <Route path="/add" component={Form} />
+      <Route path="/update/:id" component={Form} />
     </Switch>
   </Router>
 )
