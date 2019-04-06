@@ -6,6 +6,8 @@ const USER_TOKEN =
 const AuthString = 'Bearer '.concat(USER_TOKEN)
 export const fetchData = async () => {
   const getData = await axios.get(url, { headers: { Authorization: AuthString } })
-  console.log(getData)
   return getData.data.sites
+}
+export const createData = async data => {
+  return await axios.post(url, data, { headers: { Authorization: AuthString } })
 }
