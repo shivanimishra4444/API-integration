@@ -15,7 +15,8 @@ var config = {
    */
   output: {
     path: path.join(__dirname, '/dist'),
-    filename: 'bundle.min.js'
+    filename: 'bundle.min.js',
+    publicPath: '/'
   },
   /*
    * resolve lets Webpack now in advance what file extensions you plan on
@@ -46,7 +47,10 @@ var config = {
     new HtmlWebpackPlugin({
       template: './index.html'
     })
-  ]
+  ],
+  devServer: {
+    historyApiFallback: true
+  }
 }
 
 module.exports = config
