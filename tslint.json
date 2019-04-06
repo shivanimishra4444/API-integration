@@ -1,0 +1,31 @@
+{
+  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "rules": {
+    "curly": false,
+    "jsx-no-lambda": false,
+    "jsx-no-multiline-js": false,
+    "max-classes-per-file": [true, 5],
+    "no-console": false,
+    "no-debugger": false,
+    "no-unused-expression": false,
+    "no-unused-variable": false,
+    "object-literal-sort-keys": false,
+    "ordered-imports": false
+  },
+  "jsRules": {
+    "curly": false,
+    "jsx-no-lambda": false,
+    "max-classes-per-file": [true, 5],
+    "no-console": false,
+    "no-debugger": false,
+    "no-shadowed-variable": false,
+    "no-unused-expression": false,
+    "no-unused-variable": false,
+    "object-literal-sort-keys": false,
+    "one-variable-per-declaration": true,
+    "ordered-imports": false,
+    "triple-equals": false,
+    "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore", "allow-pascal-case"]
+  },
+  "defaultSeverity": "error"
+}
