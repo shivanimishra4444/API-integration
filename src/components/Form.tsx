@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { createData, fetchSingleData } from '../model/Model'
+import { createData, fetchSingleData, updateData } from '../model/Model'
 
 const fields = {
   WEBSITE: 'website',
@@ -73,6 +73,11 @@ export default class Form extends React.Component<IProps, IState> {
 
   private handleSubmit = event => {
     const { website, currency, name, language_code, platform } = this.state
+    const {
+      match: {
+        params: { id }
+      }
+    } = this.props
     const json = {
       currency,
       website,
@@ -80,7 +85,11 @@ export default class Form extends React.Component<IProps, IState> {
       language_code,
       platform
     }
-    createData(json)
+    if (id) {
+      updateData(id, json)
+    } else {
+      createData(json)
+    }
     event.preventDefault()
   }
 }

@@ -19,5 +19,5 @@ export const fetchSingleData = async id => {
 }
 
 export const updateData = async (id, data) => {
-  return await axios.patch(url, { id, data }, { headers: { Authorization: AuthString } })
+  return await axios.patch(`${url}/${id}`, data, { headers: { Authorization: AuthString } })
 }
