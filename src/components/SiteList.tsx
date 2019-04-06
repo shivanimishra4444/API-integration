@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { fetchData } from '../model/Model'
+import SiteListItem from './SiteListItem'
 
 interface IState {
   sites: []
@@ -19,8 +20,8 @@ export default class SiteList extends React.Component<any, IState> {
     }
     return (
       <div>
-        {this.state.sites.map((site: { name: string }) => (
-          <div>{site.name}</div>
+        {this.state.sites.map((site: { name: string; id: number }) => (
+          <SiteListItem key={site.id} site={site} />
         ))}
       </div>
     )
