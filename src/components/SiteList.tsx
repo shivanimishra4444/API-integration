@@ -1,9 +1,10 @@
 import * as React from 'react'
 import { fetchData } from '../model/Model'
 import SiteListItem from './SiteListItem'
+import ISite from 'types'
 
 interface IState {
-  sites: []
+  sites: ISite[]
 }
 export default class SiteList extends React.Component<any, IState> {
   constructor(props) {
@@ -21,7 +22,7 @@ export default class SiteList extends React.Component<any, IState> {
     return (
       <div>
         <ul>
-          {this.state.sites.map((site: { name: string; id: number }) => (
+          {this.state.sites.map((site: ISite) => (
             <SiteListItem key={site.id} site={site} />
           ))}
         </ul>
