@@ -20,9 +20,11 @@ export default class SiteList extends React.Component<any, IState> {
     }
     return (
       <div>
-        {this.state.sites.map((site: { name: string; id: number }) => (
-          <SiteListItem key={site.id} site={site} />
-        ))}
+        <ul>
+          {this.state.sites.map((site: { name: string; id: number }) => (
+            <SiteListItem key={site.id} site={site} />
+          ))}
+        </ul>
       </div>
     )
   }

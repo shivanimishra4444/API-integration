@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { createData } from '../model/Model'
+import { createData, fetchSingleData } from '../model/Model'
 
 const fields = {
   WEBSITE: 'website',
@@ -16,35 +16,32 @@ interface IState {
   name?: string
   platform?: string
 }
-
-export default class Form extends React.Component<null, IState> {
-  private formRef: any
+interface IProps {
+  match: { params: { id: number } }
+}
+export default class Form extends React.Component<IProps, IState> {
   constructor(props) {
     super(props)
     this.state = { website: '', language_code: '', currency: '', name: '', platform: '' }
   }
 
-  handleChange = (event: React.FormEvent<EventTarget>): void => {
-    let target = event.target as HTMLInputElement
-    this.setState({ [target.name]: target.value })
-  }
-
-  handleSubmit = event => {
-    const { website, currency, name, language_code, platform } = this.state
-    const json = {
-      currency,
-      website,
-      name,
-      language_code,
-      platform
+  public componentDidMount = async () => {
+    let response
+    const {
+      match: {
+        params: { id }
+      }
+    } = this.props
+    if (id) {
+      response = await fetchSingleData(id)
+      const { website, language_code, currency, name, platform } = response
+      this.setState({ website, language_code, currency, name, platform })
     }
-    createData(json)
-    event.preventDefault()
   }
 
-  render() {
+  public render() {
     return (
-      <form onSubmit={this.handleSubmit} ref={ref => (this.formRef = ref)}>
+      <form onSubmit={this.handleSubmit}>
         <label>
           {fields.WEBSITE}:
           <input type="text" value={this.state.website} name={fields.WEBSITE} onChange={this.handleChange} />
@@ -68,5 +65,22 @@ export default class Form extends React.Component<null, IState> {
         <input type="submit" value="Submit" />
       </form>
     )
+  }
+  private handleChange = (event: React.FormEvent<EventTarget>): void => {
+    let target = event.target as HTMLInputElement
+    this.setState({ [target.name]: target.value })
+  }
+
+  private handleSubmit = event => {
+    const { website, currency, name, language_code, platform } = this.state
+    const json = {
+      currency,
+      website,
+      name,
+      language_code,
+      platform
+    }
+    createData(json)
+    event.preventDefault()
   }
 }
