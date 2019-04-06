@@ -2,15 +2,15 @@ import axios from 'axios'
 
 const url = 'https://api.staging-cobiro.com/api/v1/site'
 const USER_TOKEN =
-  'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImU0YzkwYzVlZjYwNmM2ODljZjJiNmFmOGIyNzMwOGY2MWZkNTYyZjBlODg3NWFhYzlhYzc5NTlmMzdlZjhkODFjN2ZhMWE0Yjk4ODYwMTI2In0.eyJhdWQiOiIzIiwianRpIjoiZTRjOTBjNWVmNjA2YzY4OWNmMmI2YWY4YjI3MzA4ZjYxZmQ1NjJmMGU4ODc1YWFjOWFjNzk1OWYzN2VmOGQ4MWM3ZmExYTRiOTg4NjAxMjYiLCJpYXQiOjE1NTQ1MzcwNTgsIm5iZiI6MTU1NDUzNzA1OCwiZXhwIjoxNTU3MTI5MDU4LCJzdWIiOiI0ODg5Iiwic2NvcGVzIjpbXX0.CrueqJ-yYDsKQON8fHUnZWN4olL1w_MhKUWmPH5pwNdQZ73CUymquMaXoEGmNL8FxcvT9gS4xzsYmC1gDGOP6DNOgzT69h350NAo68J55sZ6kc2y4BBtZAuOvS6fS4Sm5glkJpRYxT7bKBp-bMOntQB2npIXs0Edr_52U2F02EXEqQrZu35ePoCz1cqYS1eh_gSOuDH3qrtklaPyPdRbsiU9rLLJm82-QzGTUv8jsNAmUlrRRO9eveDQOHqJljA-MjWeTilHGIXsnF8UgzEjpAeVDgVNgv1aMLjeObRbRZN32FLIS2bm5ZYAQGBSciGvsEpSgC-FEdsSKFOTDWIjvhOI_ez-lappNvJic4fw6_-skDJ_E-3udLqQSO-bg0y4JIYq2OCFYNKsfIjXpJI5W0aTDcomwX752B4L5WmqP2cMaAa-rIn65-imBqfHBIDc_bxb-b06LdZLqyP1xfYjHzBLHLKOLzX-HSQIaVwqXLYxEKW2QloqtQ7KbdL4AgMUaQdeHwkjwga9UrOpkmrTSF4brs-1p6ooK1GlniGX8kTvqqKuUZlXqbOb6KY2ddoyaZlMzpO8d_vxIrK3h_lIh5LfrGt-1OqwAyPIjQaYWoprRmSi0Ij4rwB05eCfvYgrNPg3y7mgyY7CpjUxwoEt_KVdsTv6yZiUfmmR6snQpho'
+  'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjYxODA1OWY1YTczMmRkMDFiN2E3YjMwMGRmZDM2NWIyY2JhZGI3ZGRlN2EzMmY3ZGE3OTBlMTQ2ODFlYzQwMmNkZGQxZWQxOWM0MjBjMWRjIn0.eyJhdWQiOiIzIiwianRpIjoiNjE4MDU5ZjVhNzMyZGQwMWI3YTdiMzAwZGZkMzY1YjJjYmFkYjdkZGU3YTMyZjdkYTc5MGUxNDY4MWVjNDAyY2RkZDFlZDE5YzQyMGMxZGMiLCJpYXQiOjE1NTQ1NjcyMTMsIm5iZiI6MTU1NDU2NzIxMywiZXhwIjoxNTU3MTU5MjEzLCJzdWIiOiI0ODg5Iiwic2NvcGVzIjpbXX0.jkF-N1Q_Vc9r4zsBg6oZCGu35Th4eKd2BLQRXiKIers_Nr_n7nUC776uG0Ju6finPu8JkWU6wmHLNSJViUtfS-Rri-XH1q-IFx2YYw2RF-xnG74R0fHGLA_7V_w-XfIMhl9AerQN5lS1wxSrSKWoC5cirZToMeCqa_uGbpC8f-pZKufYKCCH5r-KsgQ0hdvf2cxruKnueMQHQDFrRGP-7pQQ8bdCvc4R0XnMM65Ikn_l70UZYkhpwAbloD_4fmHWhq76epkyv8_SzUGEcPd8Lpubdvu6YlQ1v5QnSvcHMByg7nrnPqhhkN_8a7HdcFFxI0DV-aI9xV08rctSaMGkV4afp8ufBSw18e0O-xaoSOxyIsBEJ5a0aJ_y02l1yAMmIrEepFVps5m79FxGBAOOJNGpZngJKq1r81mbKjGZgSJjgFMB6_lpPAJTUP61phGvD4q2MC4Nz3cxmQ7F5PZsr6cmti3D-hvS9PkyIitO3PnfzYvZtyaYKbri_N-Y-7TOCaWmvbOW78YR8HqGweNlh2oA8tTxs0rxPgKs8SNwcoUnsX2Fgs50rdK6beMGmDE7ewX-x8N36SUtj3VS8fzEa2IbnRLsDRCq90lGdnZhLaK1TrgRDkQxWO-rIkYm-SjIZXKVmt41UHHI7Y1LPSKjoO8lw90qI6OkfHY-6zytTW0'
 const AuthString = 'Bearer '.concat(USER_TOKEN)
 export const fetchData = async () => {
   const getData = await axios.get(url, { headers: { Authorization: AuthString } })
   console.log('data', getData.data.sites)
   return getData.data.sites
 }
-export const createData = async data => {
-  return await axios.post(url, data, { headers: { Authorization: AuthString } })
+export const createData = data => {
+  return axios.post(url, data, { headers: { Authorization: AuthString } })
 }
 
 export const fetchSingleData = async id => {
@@ -18,6 +18,7 @@ export const fetchSingleData = async id => {
   return getRow.data.site
 }
 
-export const updateData = async (id, data) => {
-  return await axios.patch(`${url}/${id}`, data, { headers: { Authorization: AuthString } })
+export const updateData = (id, data) => {
+  const response = axios.patch(`${url}/${id}`, data, { headers: { Authorization: AuthString } })
+  return response
 }

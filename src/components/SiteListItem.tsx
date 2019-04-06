@@ -8,7 +8,7 @@ interface IProps {
 export default class SiteListItem extends React.Component<IProps, any> {
   public render() {
     return (
-      <Link to={`/update/${this.props.site.id}`}>
+      <Link to={{ pathname: `/detail/${this.props.site.id}`, state: { site: this.props.site } }}>
         <li>{this.props.site.name}</li>
       </Link>
     )

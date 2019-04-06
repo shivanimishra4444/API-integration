@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { createData, fetchSingleData, updateData } from '../model/Model'
+import { createData, updateData } from '../model/Model'
+import ISite from 'types'
 
 const fields = {
   WEBSITE: 'website',
@@ -15,69 +16,68 @@ interface IState {
   currency?: string
   name?: string
   platform?: string
+  id?: number
+  status?: boolean
 }
 interface IProps {
-  match: { params: { id: number } }
+  history: { push: (path, state?) => void }
+  location: { state: { site: ISite } }
 }
 export default class Form extends React.Component<IProps, IState> {
   constructor(props) {
     super(props)
-    this.state = { website: '', language_code: '', currency: '', name: '', platform: '' }
+    this.state = { website: '', language_code: '', currency: '', name: '', platform: '', status: false }
   }
 
   public componentDidMount = async () => {
-    let response
-    const {
-      match: {
-        params: { id }
-      }
-    } = this.props
-    if (id) {
-      response = await fetchSingleData(id)
-      const { website, language_code, currency, name, platform } = response
-      this.setState({ website, language_code, currency, name, platform })
+    if (this.props.location.state !== undefined) {
+      const { website, language_code, currency, name, platform, id } = this.props.location.state.site
+      this.setState({ website, language_code, currency, name, platform, id })
     }
   }
 
   public render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          {fields.WEBSITE}:
-          <input type="text" value={this.state.website} name={fields.WEBSITE} onChange={this.handleChange} />
-        </label>
-        <label>
-          {fields.LANG_CODE}:
-          <input type="text" value={this.state.language_code} name={fields.LANG_CODE} onChange={this.handleChange} />
-        </label>
-        <label>
-          {fields.CURRENCY}:
-          <input type="text" value={this.state.currency} name={fields.CURRENCY} onChange={this.handleChange} />
-        </label>
-        <label>
-          {fields.NAME}:
-          <input type="text" value={this.state.name} name={fields.NAME} onChange={this.handleChange} />
-        </label>
-        <label>
-          {fields.PLATFORM}:
-          <input type="text" value={this.state.platform} name={fields.PLATFORM} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            {fields.WEBSITE}:
+            <input type="text" value={this.state.website} name={fields.WEBSITE} onChange={this.handleChange} />
+          </label>
+          <label>
+            {fields.LANG_CODE}:
+            <input type="text" value={this.state.language_code} name={fields.LANG_CODE} onChange={this.handleChange} />
+          </label>
+          <label>
+            {fields.CURRENCY}:
+            <input type="text" value={this.state.currency} name={fields.CURRENCY} onChange={this.handleChange} />
+          </label>
+          <label>
+            {fields.NAME}:
+            <input type="text" value={this.state.name} name={fields.NAME} onChange={this.handleChange} />
+          </label>
+          <label>
+            {fields.PLATFORM}:
+            <input type="text" value={this.state.platform} name={fields.PLATFORM} onChange={this.handleChange} />
+          </label>
+          <input type="button" value="Submit" onClick={this.handleSubmit} />
+          <input type="button" value="Main Page" onClick={this.handleBack} />
+        </form>
+        {this.state.status ? <div>site has been added/updated successfully</div> : <div />}
+      </div>
     )
   }
   private handleChange = (event: React.FormEvent<EventTarget>): void => {
     let target = event.target as HTMLInputElement
     this.setState({ [target.name]: target.value })
   }
+  private handleBack = () => {
+    this.props.history.push('/')
+  }
 
-  private handleSubmit = event => {
+  private handleSubmit = async event => {
     const { website, currency, name, language_code, platform } = this.state
-    const {
-      match: {
-        params: { id }
-      }
-    } = this.props
+
     const json = {
       currency,
       website,
@@ -85,10 +85,9 @@ export default class Form extends React.Component<IProps, IState> {
       language_code,
       platform
     }
-    if (id) {
-      updateData(id, json)
-    } else {
-      createData(json)
+    const response = this.state.id ? await updateData(this.state.id, json) : await createData(json)
+    if (response.data.status === 'success') {
+      this.setState({ status: true })
     }
     event.preventDefault()
   }
