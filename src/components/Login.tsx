@@ -18,10 +18,6 @@ class Login extends React.Component<IProps, IState> {
     }
   }
 
-  validateForm = () => {
-    return this.state.email.length > 0 && this.state.password.length > 0
-  }
-
   handleChange = event => {
     this.setState({
       [event.target.id]: event.target.value
@@ -42,9 +38,10 @@ class Login extends React.Component<IProps, IState> {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-12">
+          <div className="col-3" />
+          <div className="col-6">
             <form className="form-signin" onSubmit={this.handleSubmit}>
-              <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+              <h1 className="h3 mb-3 font-weight-normal text-center">Sign In</h1>
               <label htmlFor="email" className="sr-only">
                 Email address
               </label>
@@ -53,11 +50,12 @@ class Login extends React.Component<IProps, IState> {
                 Password
               </label>
               <input value={this.state.password} onChange={this.handleChange} type="password" id="password" className="form-control" placeholder="Password" required />
-              <button disabled={!this.validateForm} className="btn btn-lg btn-primary btn-block" type="submit">
+              <button className="btn btn-lg btn-primary btn-block" type="submit">
                 Sign in
               </button>
             </form>
           </div>
+          <div className="col-3" />
         </div>
       </div>
     )

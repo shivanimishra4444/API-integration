@@ -8,9 +8,13 @@ interface IProps {
 export default class SiteListItem extends React.Component<IProps, any> {
   public render() {
     return (
-      <Link to={{ pathname: `/detail/${this.props.site.id}`, state: { site: this.props.site } }}>
-        <li>{this.props.site.name}</li>
-      </Link>
+      <li className="list-group-item d-flex justify-content-between align-items-center">
+        {this.props.site.name}
+
+        <Link className="btn btn-success" to={{ pathname: `/detail/${this.props.site.id}`, state: { site: this.props.site } }}>
+          Detail
+        </Link>
+      </li>
     )
   }
 }

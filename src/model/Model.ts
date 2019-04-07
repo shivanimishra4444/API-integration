@@ -5,7 +5,6 @@ const url = 'https://api.staging-cobiro.com/api/v1/site'
 const AuthString = () => 'Bearer '.concat(getAccessToken())
 export const fetchData = async () => {
   const getData = await axios.get(url, { headers: { Authorization: AuthString() } })
-  console.log('data', getData.data.sites)
   return getData.data.sites
 }
 export const createData = data => {

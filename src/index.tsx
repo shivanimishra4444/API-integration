@@ -7,6 +7,7 @@ import SiteDetail from './components/SiteDetail'
 import Login from './components/Login'
 import NavBar from './components/NavBar'
 import { AuthenticatedRoute } from './util/Authentication'
+import 'bootstrap'
 
 const route = (
   <div>
