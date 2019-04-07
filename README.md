@@ -16,6 +16,7 @@ I have spent around 6 hrs on this assignement and I have implemented below featu
 2) More detailed test cases
 3) create sites with all fields
 4) comments and documentation
+5) css preprocessor if more styling is required
 
 ## Tech stack
 1) React 
