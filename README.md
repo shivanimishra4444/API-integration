@@ -1,5 +1,5 @@
 # cobiro-integration
-I have spent around 6 hrs on this assignement and I could implement below features
+I have spent around 6 hrs on this assignement and I have implemented below features
 ## Implemented features:
 1) Login
 2) View List of sites
@@ -9,6 +9,7 @@ I have spent around 6 hrs on this assignement and I could implement below featur
 6) Navigation with navbar
 7) Protected routes with authentication
 8) Authentication using cookies.
+9) Responsiveness
 
 ## If I had more time then I could have worked on below features
 1) Signup 
@@ -36,6 +37,6 @@ I have spent around 6 hrs on this assignement and I could implement below featur
  * ```npm start```
  * ```jest``` - to run test case
  
- 
+ ## I have attached screenshots
   
 
