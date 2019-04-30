@@ -1,5 +1,5 @@
-# cobiro-integration
-I have spent around 6 hrs on this assignement and I have implemented below features
+# API-integration
+I have implemented below features
 ## Implemented features:
 1) Login
 2) View List of sites
@@ -11,7 +11,7 @@ I have spent around 6 hrs on this assignement and I have implemented below featu
 8) Authentication using cookies.
 9) Responsiveness
 
-## If I had more time then I could have worked on below features
+## Work in Progress on below features
 1) Signup 
 2) More detailed test cases
 3) create sites with all fields
